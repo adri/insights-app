@@ -7,10 +7,22 @@
   },
   "dependencies": {
     "ramda": "0.21.0",
+    "immutable": "^3.7.6",
     "react": "^0.14.8",
     "react-native": "^0.23.1",
-    "react-native-code-push": "^1.10.0-beta",
+    "react-redux": "^4.4.1",
+    "react-native-gifted-spinner": "0.0.3",
     "react-native-ibeacon": "0.6.0",
-    "redux": "3.4.0"
+    "react-native-navbar": "^1.4.0",
+    "react-native-vector-icons": "^1.3.2",
+    "react-native-code-push": "^1.10.0-beta",
+    "redux": "^3.3.1",
+    "redux-thunk": "^2.0.1",
+    "remote-redux-devtools": "^0.1.5",
+    "validate.js": "^0.9.0"
+  },
+  "devDependencies": {
+    "redux-immutable-state-invariant": "^1.2.2",
+    "remotedev-server": "0.0.6"
   }
 }
