@@ -6,8 +6,11 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "ramda": "0.21.0",
     "react": "^0.14.8",
-    "react-native": "^0.22.2",
-    "react-native-code-push": "^1.10.0-beta"
+    "react-native": "^0.23.1",
+    "react-native-code-push": "^1.10.0-beta",
+    "react-native-ibeacon": "0.6.0",
+    "redux": "3.4.0"
   }
 }
