@@ -1,12 +1,11 @@
-import updateCheck from './updateCheck';
-import { startMonitoring, subscribe } from './beacons/monitor'
+import updateCheck from './utils/updateCheck';
+import BeaconMonitor from './beacons/monitor'
 
-export default function init() {
+export default function init(store) {
   //updateCheck();
-  startMonitoring();
-  subscribe((region, beacons) => {
-    console.log(region, beacons);
-  });
+  const beaconMonitor = new BeaconMonitor(store);
+  beaconMonitor.startMonitoring();
+  beaconMonitor.subscribe();
 }
 
 

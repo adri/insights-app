@@ -4,7 +4,7 @@
 import React, { AppRegistry, Component } from 'react-native';
 import Immutable from 'immutable';
 import configureStore from './src/store/configureStore';
-import updateCheck from './src/utils/updateCheck';
+import init from './src/init';
 import { Provider } from 'react-redux';
 
 const store = configureStore(Immutable.fromJS({}));
@@ -21,4 +21,4 @@ class Insights extends Component {
 }
 
 AppRegistry.registerComponent('insights', () => Insights);
-updateCheck();
+init(store);

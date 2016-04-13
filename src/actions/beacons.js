@@ -1,35 +1,17 @@
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+export const BEACON_IN_RANGE = 'BEACON_IN_RANGE';
+export const BEACON_OUT_OF_RANGE = 'BEACON_OUT_OF_RANGE';
 
-export function increment() {
-  return {
-    type: INCREMENT_COUNTER
-  };
-}
-
-export function decrement() {
-  return {
-    type: DECREMENT_COUNTER
-  };
-}
-
-export function incrementIfOdd() {
-  return (dispatch, getState) => {
-    var { counter } = getState();
-
-    if (counter % 2 === 0) {
-      return;
+export function beaconRangeSignal(signal) {
+  if (signal.proximity == 'unknown' || signal.proximity == 'far') {
+    return {
+      type: BEACON_OUT_OF_RANGE,
+      signal,
     }
+  }
 
-    dispatch(increment());
+  return {
+    type: BEACON_IN_RANGE,
+    signal,
   };
 }
 
-export function incrementAsync(delay) {
-  delay = delay || 1000;
-  return dispatch => {
-    setTimeout(() => {
-      dispatch(increment());
-    }, delay);
-  };
-}
