@@ -10,11 +10,10 @@ export function startMonitoring() {
 
     R.values(beacons).forEach(region => {
         BeaconMonitor.startMonitoringForRegion(region);
-        //BeaconMonitor.startRangingBeaconsInRegion(region);
     });
 
     BeaconMonitor.startUpdatingLocation();
-    //BeaconMonitor.shouldDropEmptyRanges(true);
+    BeaconMonitor.shouldDropEmptyRanges(true);
 }
 
 export function stopMonitoring() {

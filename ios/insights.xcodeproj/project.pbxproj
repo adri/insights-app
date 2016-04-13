@@ -402,7 +402,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 7E6P2ZHVHT;
+						DevelopmentTeam = F48QH95NN7;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
