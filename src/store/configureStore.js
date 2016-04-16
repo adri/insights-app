@@ -7,17 +7,21 @@ import invariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import devTools from 'remote-redux-devtools';
 import reducers from '../reducers';
+import {storageReducer, localStorage, loadFromLocalStorage} from './localStorage';
 
 export default function configureStore(initialState) {
-  console.log('reducers', reducers);
+  const reducer = storageReducer(combineReducers(reducers));
+
   const store = createStore(
-    combineReducers(reducers),
+    reducer,
     initialState,
     compose(
-      applyMiddleware(invariant(), thunk),
+      applyMiddleware(invariant(), thunk, localStorage),
       devTools()
     )
   );
+
+  loadFromLocalStorage(store);
 
   if (module.hot) {
     // Enable hot module replacement for reducers
