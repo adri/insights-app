@@ -14,6 +14,12 @@ export default {
         uuid: '0F73D453-7524-4862-A864-3420875DBA4B',
         major: 33712,
         minor: 17281
+    },
+    Coffeemachine: {
+        identifier: 'Coffeemachine',
+        uuid: '44C0FFEE-988A-49DC-0BAD-A55C0DE2D1E4',
+        major: 159,
+        minor: 241,
     }
     //{ minor: 17281,
     //    rssi: 0,
