@@ -7,7 +7,7 @@
     "build-ios": "$NVM_BIN/react-native bundle --platform=ios --entry-file=index.ios.js --bundle-output=ios/main.jsbundle --assets-dest=ios/assets --dev false"
   },
   "dependencies": {
-    "immutable": "^3.7.6",
+    "immutable": "^3.8.0",
     "ramda": "0.21.0",
     "react": "^0.14.8",
     "react-native": "^0.23.1",

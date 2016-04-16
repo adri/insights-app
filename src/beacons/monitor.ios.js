@@ -17,7 +17,6 @@ export default class Beacon {
 
     R.values(beacons).forEach(region => {
       BeaconMonitor.startMonitoringForRegion(region);
-      BeaconMonitor.startRangingBeaconsInRegion(region);
     });
 
     BeaconMonitor.startUpdatingLocation();

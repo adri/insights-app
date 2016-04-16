@@ -9,7 +9,7 @@ import devTools from 'remote-redux-devtools';
 import reducers from '../reducers';
 import {storageReducer, localStorage, loadFromLocalStorage} from './localStorage';
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState: Object) {
   const reducer = storageReducer(combineReducers(reducers));
 
   const store = createStore(

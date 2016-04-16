@@ -8,30 +8,34 @@ const initialState = Immutable.fromJS({
   nearbyCount: {},
 });
 
-function getKey(signal) {
+function getBeaconId(signal) {
+  if (!signal) {
+    return '';
+  }
   return [signal.uuid, signal.major, signal.minor].join('-');
 }
 
-export default function beacons(state = initialState, action) {
-  switch (action.type) {
-    case BEACON_IN_RANGE:
-      var key = getKey(action.signal);
-      return state
-          .deleteIn(['gone', key])
-          .updateIn(['nearbyCount', action.signal.identifier], (count = 0) => {
-            if (state.getIn(['nearby', key])) {
-              return count;
-            }
+export default function beacons(state = initialState, {type, signal}) {
+  const beaconId = getBeaconId(signal);
 
-            return count + 1;
-          })
-          .setIn(['nearby', key], action.signal);
-    case BEACON_OUT_OF_RANGE:
-      var key = getKey(action.signal);
-      return state
-        .deleteIn(['nearby', key])
-        .setIn(['gone', key], action.signal);
-    default:
-      return state
+  if (type === BEACON_IN_RANGE) {
+    return state
+      .deleteIn(['gone', beaconId])
+      .updateIn(['nearbyCount', signal.identifier], (count = 0) => {
+        if (state.hasIn(['nearby', beaconId])) {
+          return count;
+        }
+
+        return count + 1;
+      })
+      .setIn(['nearby', beaconId], signal);
   }
+
+  if (type === BEACON_OUT_OF_RANGE) {
+    return state
+      .deleteIn(['nearby', beaconId])
+      .setIn(['gone', beaconId], signal);
+  }
+
+  return state;
 };

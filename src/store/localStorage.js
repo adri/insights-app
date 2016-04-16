@@ -22,7 +22,7 @@ const engine = whiteList(debounce(createEngine('insights'), DEBOUNCE_MS));
 
 //const engine = debounce(createEngine('insights'), DEBOUNCE_MS);
 
-export function storageReducer(reducers) {
+export function storageReducer(reducers: Array<Object>) {
   return storage.reducer(reducers, immutableMerger);
 }
 export const localStorage = storage.createMiddleware(engine);
