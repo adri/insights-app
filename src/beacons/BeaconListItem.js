@@ -25,14 +25,14 @@ const styles = StyleSheet.create({
   },
  });
 
-export default function BeaconList({ beacons, title }) {
+export default function BeaconListItem({ beacon }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
 
       {beacons.map(beacon => (
         <Animatable.View animation="zoomInUp" duration={200}>
-          <Text style={styles.beaconTitle}>{beacon.get('idenfifier')}</Text>
+          <Text style={styles.beaconTitle}>{beacon.get('identifier')}</Text>
         </Animatable.View>
       ))}
     </View>

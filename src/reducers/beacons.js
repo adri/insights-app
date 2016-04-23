@@ -20,7 +20,6 @@ export default function beacons(state = initialState, {type, signal}) {
 
   if (type === BEACON_IN_RANGE) {
     return state
-      .deleteIn(['gone', beaconId])
       .updateIn(['nearbyCount', signal.identifier], (count = 0) => {
         if (state.hasIn(['nearby', beaconId])) {
           return count;
@@ -32,9 +31,7 @@ export default function beacons(state = initialState, {type, signal}) {
   }
 
   if (type === BEACON_OUT_OF_RANGE) {
-    return state
-      .deleteIn(['nearby', beaconId])
-      .setIn(['gone', beaconId], signal);
+    return state.deleteIn(['nearby', beaconId])
   }
 
   return state;

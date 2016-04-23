@@ -12,6 +12,8 @@
     "react": "^0.14.8",
     "react-native": "^0.23.1",
     "react-native-animatable": "^0.5.2",
+    "react-native-art-svg": "^1.1.1",
+    "react-native-bem-check-box": "^0.3.2",
     "react-native-code-push": "^1.10.0-beta",
     "react-native-gifted-spinner": "0.0.3",
     "react-native-ibeacon": "0.6.0",

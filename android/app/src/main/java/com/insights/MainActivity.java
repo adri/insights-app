@@ -1,6 +1,7 @@
 package com.insights;
 
 import com.facebook.react.ReactActivity;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -36,6 +37,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+        new VectorIconsPackage(),
             new CodePush("43ENH2WbHU9EgYYtD7ofoMR7qRwNE1M-WAV0l", this, BuildConfig.DEBUG)
 
         );

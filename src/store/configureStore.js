@@ -17,7 +17,7 @@ export default function configureStore(initialState: Object) {
     initialState,
     compose(
       applyMiddleware(invariant(), thunk, localStorage),
-      devTools()
+      devTools({name: 'Insights iOS app'})
     )
   );
 

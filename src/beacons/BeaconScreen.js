@@ -47,12 +47,12 @@ class BeaconScreen extends Component {
           ))}
         </View>
 
-        <View style={styles.countsContainer}>
-          <BeaconList beacons={beacons.get('nearby')} title="Nearby beacons" />
-          <BeaconList beacons={beacons.get('gone')} title="Known beacons" />
-        </View>
       </View>
     );
+        // <View style={styles.countsContainer}>
+        //   <BeaconList beacons={beacons.get('nearby')} title="Nearby beacons" />
+        //   <BeaconList beacons={beacons.get('gone')} title="Known beacons" />
+        // </View>
   }
 }
 

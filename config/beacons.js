@@ -1,8 +1,4 @@
 export default {
-    Simulator: {
-        identifier: 'Simulator',
-        uuid: '44C0FFEE-988A-49DC-0BAD-A55C0DE2D1E4',
-    },
     Key: {
         identifier: 'Key',
         uuid: '0F73D453-7524-4862-A864-3420875DBA4B',
@@ -17,9 +13,9 @@ export default {
     },
     Coffeemachine: {
         identifier: 'Coffeemachine',
-        uuid: '44C0FFEE-988A-49DC-0BAD-A55C0DE2D1E4',
-        major: 159,
-        minor: 241,
+        uuid: '44C0FFEE-988A-49DC-0BAD-A55C0D32D1E4',
+        major: 109,
+        minor: 166,
     }
     //{ minor: 17281,
     //    rssi: 0,

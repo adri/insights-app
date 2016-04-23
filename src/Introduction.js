@@ -35,6 +35,15 @@ export default class Introduction extends Component {
             Login
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={actions.routes.pullToRefresh()}>
+          <Text style={styles.welcome}>Pull to refresh</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={actions.routes.windowShade()}>
+          <Text style={styles.welcome}>Window shade</Text>
+        </TouchableOpacity>
+
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
