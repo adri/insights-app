@@ -1,7 +1,7 @@
 import { DeviceEventEmitter } from 'react-native';
 const BeaconMonitor = require('react-native-ibeacon');
 import beacons from '../../config/beacons';
-import { beaconRangeSignal } from '../actions/beacons';
+import { beaconInRange, beaconOutOfRange } from '../actions/beacons';
 import R from 'ramda';
 
 export default class Beacon {
@@ -43,7 +43,7 @@ export default class Beacon {
       this.store.dispatch(beaconInRange(beacons[region]));
     });
     this.addListener('regionDidExit', ({ region }) => {
-      this.store.dispatch(beaconInRange(beacons[region]));
+      this.store.dispatch(beaconOutOfRange(beacons[region]));
     });
   }
 

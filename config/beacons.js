@@ -16,7 +16,13 @@ export default {
         uuid: '44C0FFEE-988A-49DC-0BAD-A55C0D32D1E4',
         major: 109,
         minor: 166,
-    }
+    },
+    CoffeemachineSecondFloor: {
+        identifier: 'Coffeemachine Second Floor',
+        uuid: '44C0FFEE-988A-49DC-0BAD-A55C0D32D1E4',
+        major: 92,
+        minor: 479,
+    },
     //{ minor: 17281,
     //    rssi: 0,
     //    major: 33712,

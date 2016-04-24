@@ -1,37 +1,27 @@
-import { BEACON_IN_RANGE, BEACON_OUT_OF_RANGE } from '../actions/beacons';
-import Immutable from 'immutable';
+import { BEACON_IN_RANGE, BEACONS_ADDED, BEACON_OUT_OF_RANGE } from '../actions/beacons';
+import Immutable, { List } from 'immutable';
 import R from 'ramda';
 
+const groupByBeaconId = R.pipe(
+  R.values,
+  R.indexBy(R.prop('beaconId'))
+);
 const initialState = Immutable.fromJS({
-  nearby: {},
-  gone: {},
-  nearbyCount: {},
+  known: {},
 });
 
-function getBeaconId(signal) {
-  if (!signal) {
-    return '';
-  }
-  return [signal.uuid, signal.major, signal.minor].join('-');
-}
-
-export default function beacons(state = initialState, {type, signal}) {
-  const beaconId = getBeaconId(signal);
-
+export default function beacons(state = initialState, { type, ...action }) {
   if (type === BEACON_IN_RANGE) {
     return state
-      .updateIn(['nearbyCount', signal.identifier], (count = 0) => {
-        if (state.hasIn(['nearby', beaconId])) {
-          return count;
-        }
-
-        return count + 1;
-      })
-      .setIn(['nearby', beaconId], signal);
+      .updateIn(
+        ['known', action.beaconId, 'counts'],
+        List(),
+        history => history.push(action.created)
+      );
   }
 
-  if (type === BEACON_OUT_OF_RANGE) {
-    return state.deleteIn(['nearby', beaconId])
+  if (type === BEACONS_ADDED) {
+    return state.mergeDeep({ known: groupByBeaconId(action.beacons) });
   }
 
   return state;

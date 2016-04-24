@@ -2,40 +2,46 @@ import React, {
   Component,
   StyleSheet,
   Text,
+  TouchableOpacity,
+  ListView,
   View
 } from 'react-native';
 import Animatable from 'react-native-animatable';
+import Immutable from 'immutable';
+import BeaconListItem from './BeaconListItem';
+import { SwipeListView } from 'react-native-swipe-list-view';
+import { pure } from 'recompose';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: '#333333',
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  beaconTitle: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
   },
  });
 
-export default function BeaconList({ beacons, title }) {
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => !Immutable.is(r1, r2)});
+
+function BeaconList({ beacons, onSelect }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-
-      {beacons.map(beacon => (
-        <Animatable.View animation="zoomInUp" duration={200}>
-          <Text style={styles.beaconTitle}>{beacon.get('idenfifier')}</Text>
-        </Animatable.View>
-      ))}
+      <SwipeListView
+        dataSource={ds.cloneWithRows(beacons.toArray())}
+        renderRow={beacon => (
+          <TouchableOpacity onPress={() => onSelect(beacon.toJS())}>
+            <BeaconListItem {...beacon.toJS()} />
+          </TouchableOpacity>
+        )}
+        renderHiddenRow={beacon => (
+            <View style={styles.rowBack}>
+            </View>
+        )}
+        disableLeftSwipe={true}
+        disableRightSwipe={true}
+        leftOpenValue={75}
+        rightOpenValue={-75}
+      />
     </View>
   );
 }
 
+export default pure(BeaconList);

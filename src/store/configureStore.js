@@ -26,7 +26,7 @@ export default function configureStore(initialState: Object) {
   if (module.hot) {
     // Enable hot module replacement for reducers
     module.hot.accept(() => {
-      const nextRootReducer = require('../reducers/index').default;
+      const nextRootReducer = storageReducer(combineReducers(require('../reducers').default));
       store.replaceReducer(nextRootReducer);
     });
   }
