@@ -11,11 +11,12 @@ function getBeaconId(region) {
   return [region.uuid, region.major, region.minor].join('-');
 }
 
-export function beaconInRange(beacon) {
+export function beaconInRange(beacon, data) {
   return {
     type: BEACON_IN_RANGE,
     beaconId: getBeaconId(beacon),
-    created: (new Date).toJSON()
+    created: (new Date).toJSON(),
+    data
   };
 }
 

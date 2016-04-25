@@ -6,13 +6,14 @@ import React, {
   PixelRatio
 } from 'react-native';
 import Animatable from 'react-native-animatable';
+import Histogram from './Histogram';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingTop: 15,
     justifyContent: 'space-between',
     borderBottomWidth: 1 / PixelRatio.get(),
     borderBottomColor: '#eeeeee',
@@ -22,20 +23,26 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'left',
     paddingHorizontal: 15,
+    paddingBottom: 15,
     marginTop: 2,
   },
   count: {
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  histogramContainer: {
+    flex: 1,
+    alignSelf: 'flex-end'
   }
  });
 
-export default function BeaconListItem({ identifier, counts = [] }) {
+export default function BeaconListItem({ name, counts = [] }) {
   return (
-    <Animatable.View style={styles.container} animation="zoomInUp" duration={200}>
+    <View style={styles.container} animation="zoomInUp" duration={200}>
       <Text style={styles.count}>{counts.length}</Text>
-      <Text style={styles.title}>{identifier}</Text>
-    </Animatable.View>
+      <Text style={styles.title}>{name}</Text>
+      <View style={styles.histogramContainer}><Histogram counts={counts} /></View>
+    </View>
   );
 }
 

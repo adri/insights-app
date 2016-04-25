@@ -10,7 +10,7 @@ export default class Beacon {
     this.listeners = [];
   }
 
-  startMonitoring(store) {
+  startMonitoring() {
     if (!BeaconMonitor) {
       return;
     }
@@ -39,10 +39,12 @@ export default class Beacon {
 
   subscribe() {
     console.log('subscribe');
-    this.addListener('regionDidEnter', ({ region }) => {
-      this.store.dispatch(beaconInRange(beacons[region]));
+    this.addListener('regionDidEnter', (data) => {
+      console.log('regionDidEnter', data);
+      this.store.dispatch(beaconInRange(beacons[data.region], data));
     });
     this.addListener('regionDidExit', ({ region }) => {
+
       this.store.dispatch(beaconOutOfRange(beacons[region]));
     });
   }
