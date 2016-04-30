@@ -24,19 +24,26 @@ function formatDate(date) {
   return date.toJSON().substr(0, 10);
 }
 
+/**
+ * Return a list of counts for the last x days.
+ *
+ * @param {Array<string>} counts
+ * @returns {*}
+ */
 function countsByDay(counts) {
   let today = new Date(Date.now() + 86400000); // Tomorrow
-  const last30Days = R.range(1, 15).map(i => {
-    today.setDate(today.getDate() - 1);
 
-    return formatDate(today);
-  });
+  return R.range(1, 15)
+    .map(() => {
+      today.setDate(today.getDate() - 1);
 
-  return last30Days.map(day => {
-    return counts
-      .filter(timestamp => timestamp.startsWith(day))
-      .length
-  })
+      return formatDate(today);
+    })
+    .map(day => {
+      return counts
+        .filter(timestamp => timestamp.startsWith(day))
+        .length
+    })
 }
 
 function Histogram({ counts }) {
