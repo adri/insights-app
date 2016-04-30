@@ -5,7 +5,8 @@ import BeaconMonitor from './beacons/monitor'
 
 export default function init(store) {
   updateCheck();
-  const beaconMonitor = new BeaconMonitor(store);
+
+  const beaconMonitor = new BeaconMonitor(store.dispatch);
   beaconMonitor.startMonitoring();
   beaconMonitor.subscribe();
 

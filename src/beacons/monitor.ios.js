@@ -5,8 +5,8 @@ import { beaconInRange, beaconOutOfRange } from '../actions/beacons';
 import R from 'ramda';
 
 export default class Beacon {
-  constructor(store) {
-    this.store = store;
+  constructor(dispatch) {
+    this.dispatch = dispatch;
     this.listeners = [];
   }
 
@@ -19,12 +19,21 @@ export default class Beacon {
     console.log('BeaconMonitor.startMonitoring');
     BeaconMonitor.requestAlwaysAuthorization();
 
+    BeaconMonitor.requestAlwaysAuthorization();
+    BeaconMonitor.getAuthorizationStatus(authorization => {
+      console.log('authorization', authorization);
+    });
+
     R.values(beacons).forEach(region => {
-      BeaconMonitor.startMonitoringForRegion(region);
+      console.log('Monitoring region', region);
+      BeaconMonitor.startMonitoringForRegion({
+        identifier: region.identifier,
+        uuid: region.uuid,
+      });
     });
 
     //BeaconMonitor.startUpdatingLocation();
-    BeaconMonitor.shouldDropEmptyRanges(true);
+    //BeaconMonitor.shouldDropEmptyRanges(true);
   }
 
   stopMonitoring() {
@@ -34,18 +43,17 @@ export default class Beacon {
     R.values(beacons).forEach(region => {
       BeaconMonitor.stopMonitoringForRegion(region);
     });
-    BeaconMonitor.stopUpdatingLocation();
   }
 
   subscribe() {
-    console.log('subscribe');
+    console.log('subscribing to regionDidEnter and regionDidExit');
     this.addListener('regionDidEnter', (data) => {
       console.log('regionDidEnter', data);
-      this.store.dispatch(beaconInRange(beacons[data.region], data));
+      this.dispatch(beaconInRange(beacons[data.region], data));
     });
     this.addListener('regionDidExit', ({ region }) => {
-
-      this.store.dispatch(beaconOutOfRange(beacons[region]));
+      console.log('regionDidExit', region);
+      this.dispatch(beaconOutOfRange(beacons[region]));
     });
   }
 

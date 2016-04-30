@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 18,
+    fontWeight: 'bold',
     textAlign: 'left',
     paddingHorizontal: 15,
     paddingBottom: 15,
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
 export default function BeaconListItem({ name, counts = [] }) {
   return (
     <View style={styles.container} animation="zoomInUp" duration={200}>
-      <Text style={styles.count}>{counts.length}</Text>
+      {/*<Text style={styles.count}>{counts.length}</Text>*/}
       <Text style={styles.title}>{name}</Text>
       <View style={styles.histogramContainer}><Histogram counts={counts} /></View>
     </View>
